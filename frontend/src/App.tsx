@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState, ReactNode } from 'react';
 import './App.css';
+import VehicleCategory from './components/VehicleCategory/VehicleCategory'
 
-interface IVehicleProps {
+export interface IVehicleProps {
   category?: string;
   price?: string;
   stocked?: boolean;
@@ -42,19 +43,9 @@ const vehicles: IVehicleProps[] = [
 function App() {
 
 
-  function VehicleCategoryRow({ category }: IVehicleProps) {
-    return (
-      <tr>
-        <th colSpan={2}>
-          {category}
-        </th>
-      </tr>
-    );
-  }
+ 
 
   function VehicleRow({ vehicle }: IVehicleRowProps) {
-
-
     const name = vehicle.stocked?
     vehicle.model
     :<span style={{ color: 'red' }}>{vehicle.model}</span>;
@@ -87,7 +78,7 @@ function App() {
 
       if (vehicle.category !== currentCategory) {
         rows.push(
-          <VehicleCategoryRow
+          <VehicleCategory
             category={vehicle.category}
             key={vehicle.category} />
         );
