@@ -1,21 +1,13 @@
-import React, { ChangeEvent, useState, ReactNode } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import './App.css';
-import VehicleCategory from './components/VehicleCategory/VehicleCategory'
+import VehicleTable from './components/VehicleTable/VehicleTable';
+
 
 export interface IVehicleProps {
   category?: string;
   price?: string;
   stocked?: boolean;
   model?: string;
-}
-interface IVehicleRowProps {
-  vehicle: IVehicleProps;
-}
-
-interface IVehicleTableProps {
-  vehicles: IVehicleProps[];
-  filterText?: string;
-  inStockOnly?: boolean;
 }
 
 interface ISearchBarProps {
@@ -41,69 +33,6 @@ const vehicles: IVehicleProps[] = [
 ];
 
 function App() {
-
-
- 
-
-  function VehicleRow({ vehicle }: IVehicleRowProps) {
-    const name = vehicle.stocked?
-    vehicle.model
-    :<span style={{ color: 'red' }}>{vehicle.model}</span>;
-
-    return (
-      <tr>
-        <td>{name}</td>
-        <td>{vehicle.price}</td>
-      </tr>
-    );
-  }
-
-  function VehicleTable({ vehicles, filterText, inStockOnly }: IVehicleTableProps) {
-    const rows: ReactNode[] = [];
-    let currentCategory: string | null = null;
-
-    vehicles.forEach((vehicle) => {
-
-      if (
-        vehicle.model!.toLowerCase().indexOf(
-          filterText!.toLowerCase()
-        ) === -1
-      ) {
-        return;
-      }
-      
-      if (inStockOnly && !vehicle.stocked) {
-        return;
-      }
-
-      if (vehicle.category !== currentCategory) {
-        rows.push(
-          <VehicleCategory
-            category={vehicle.category}
-            key={vehicle.category} />
-        );
-      }
-    
-      rows.push(
-        <VehicleRow
-          vehicle={vehicle}
-          key={vehicle.model} />
-      );
-      currentCategory = vehicle.category!;
-    });
-
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Vehicle</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    );
-  }
 
   function SearchBar({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyChange }: ISearchBarProps) {
     return (
