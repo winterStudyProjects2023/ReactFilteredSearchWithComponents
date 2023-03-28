@@ -1,24 +1,12 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import './App.css';
-import VehicleTable from './components/VehicleTable/VehicleTable';
 
-
+import FilterableVehicleTable from './components/FilterableVehicleTable/FilterableVehicleTable';
 export interface IVehicleProps {
   category?: string;
   price?: string;
   stocked?: boolean;
   model?: string;
-}
-
-interface ISearchBarProps {
-  filterText: string;
-  inStockOnly: boolean;
-  onFilterTextChange: (filterText: string) => void;
-  onInStockOnlyChange: (inStockOnly: boolean) => void;
-}
-
-interface IFilterableVehicleTableProps {
-  vehicles: IVehicleProps[];
 }
 
 const vehicles: IVehicleProps[] = [
@@ -33,52 +21,6 @@ const vehicles: IVehicleProps[] = [
 ];
 
 function App() {
-
-  function SearchBar({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyChange }: ISearchBarProps) {
-    return (
-      <form>
-        <input type="text"
-          value={filterText}
-          placeholder="Search..."
-          onChange={(e: ChangeEvent<HTMLInputElement>) => onFilterTextChange(e.target.value)} />
-        <label>
-          <input type="checkbox"
-            checked={inStockOnly}
-            onChange={(e) => onInStockOnlyChange(e.target.checked)} />
-          {' '}
-          Show only vehicles in stock
-        </label>
-      </form>
-    );
-  }
-
-  function FilterableVehicleTable({ vehicles }: IFilterableVehicleTableProps) {
-    const [filterText, setFilterText] = useState('');
-    const [inStockOnly, setInStockOnly] = useState(false);
-
-    const handleFilterTextChange = (filterText: string) => {
-      setFilterText(filterText);
-    }
-
-    const handleInStockOnlyChange = (inStockOnly: boolean) => {
-      setInStockOnly(inStockOnly);
-    }
-
-    return (
-      <div>
-        <SearchBar
-          filterText={filterText}
-          inStockOnly={inStockOnly}
-          onFilterTextChange={handleFilterTextChange}
-          onInStockOnlyChange={handleInStockOnlyChange}
-        />
-        <VehicleTable
-          vehicles={vehicles}
-          filterText={filterText}
-          inStockOnly={inStockOnly} />
-      </div>
-    );
-  }
 
   return (
     <div className="App">

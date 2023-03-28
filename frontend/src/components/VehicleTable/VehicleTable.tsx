@@ -4,13 +4,13 @@ import VehicleRow from '../VehicleRow/VehicleRow';
 
 import {IVehicleProps} from '../../App';
 
-interface IVehicleTableProps {
+type VehicleTableProps = {
   vehicles: IVehicleProps[];
   filterText: string;
   inStockOnly: boolean;
 }
 
-export default function VehicleTable({ vehicles, filterText, inStockOnly }: IVehicleTableProps) {
+export default function VehicleTable({ vehicles, filterText, inStockOnly }: VehicleTableProps) {
     const rows: ReactNode[] = [];
     let currentCategory: string | null = null;
 
