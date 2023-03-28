@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import VehicleCategory from '../VehicleCategory/VehicleCategory';
 import VehicleRow from '../VehicleRow/VehicleRow';
+import './VehicleTable.styles.css'
 
 import {IVehicleProps} from '../../App';
 
@@ -21,11 +22,11 @@ export default function VehicleTable({ vehicles, filterText, inStockOnly }: Vehi
           filterText!.toLowerCase()
         ) === -1
       ) {
-        return;
+        return
       }
       
       if (inStockOnly && !vehicle.stocked) {
-        return;
+        return
       }
 
       if (vehicle.category !== currentCategory) {
@@ -45,7 +46,7 @@ export default function VehicleTable({ vehicles, filterText, inStockOnly }: Vehi
     });
 
     return (
-      <table>
+      <table className='vehicle-table'>
         <thead>
           <tr>
             <th>Vehicle</th>

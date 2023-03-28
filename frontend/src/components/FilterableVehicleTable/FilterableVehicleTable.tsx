@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import SearchBar from '../SearchBar/SearchBar';
 import VehicleTable from '../VehicleTable/VehicleTable';
 
+import './FilterableVehicleTable.styles.css'
+
 import { IVehicleProps } from '../../App';
 
 
@@ -19,7 +21,7 @@ export default function FilterableVehicleTable({ vehicles }: { vehicles: IVehicl
     }
 
     return (
-        <div>
+        <div className='search-box'>
             <SearchBar
                 filterText={filterText}
                 inStockOnly={inStockOnly}

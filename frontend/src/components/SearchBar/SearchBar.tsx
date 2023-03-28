@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent } from 'react';
+import './SearchBar.styles.css'
 
 type SearchBarProps = {
     filterText: string;
@@ -17,11 +18,12 @@ export default function SearchBar({ filterText, inStockOnly, onFilterTextChange,
     }
 
     return (
-        <form>
+        <form className='search-form'>
             <input type="text"
                 value={filterText}
                 placeholder="Search..."
                 onChange={handleTypeChange} />
+                <br />
             <label>
                 <input type="checkbox"
                     checked={inStockOnly}

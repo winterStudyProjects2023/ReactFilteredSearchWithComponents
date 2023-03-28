@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <FilterableVehicleTable vehicles={vehicles} />;
+      <FilterableVehicleTable vehicles={vehicles} />
     </div>
   );
 }
